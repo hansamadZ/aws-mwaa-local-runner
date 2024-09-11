@@ -18,6 +18,7 @@ ARG AIRFLOW_DEPS=""
 ARG PYTHON_DEPS=""
 ARG SYSTEM_DEPS=""
 ARG INDEX_URL=""
+ARG TEST_DIRECTORY=${AIRFLOW_USER_HOME}/tests
 ENV AIRFLOW_HOME=${AIRFLOW_USER_HOME}
 ENV PATH="/usr/local/airflow/.local/bin:/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/airflow/.local/lib/python3.11/site-packages:/usr/local/airflow/.local/bin:/usr/local/airflow/.local/lib/python3.11/site-packages:/usr/local/airflow/.local/bin:/usr/local/airflow/.local/lib/python3.11/site-packages"
 ENV PYTHON_VERSION=3.11.7
@@ -37,6 +38,7 @@ RUN chmod u+x /generate_key.sh && /generate_key.sh
 RUN chmod u+x /run-startup.sh
 RUN chmod u+x /shell-launch-script.sh
 RUN chmod u+x /verification.sh
+
 
 # Post bootstrap to avoid expensive docker rebuilds
 COPY script/entrypoint.sh /entrypoint.sh

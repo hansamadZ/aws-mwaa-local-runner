@@ -124,7 +124,13 @@ case "$1" in
       mkdir -p $AIRFLOW_HOME/requirements
       aws s3 cp $S3_REQUIREMENTS_PATH $AIRFLOW_HOME/$REQUIREMENTS_FILE
     fi
-
+    # if S3_TESTS_PATH
+    if [ -n "$S3_TESTS_PATH" ]; then
+      echo "Downloading $S3_TESTS_PATH"
+      mkdir -p $AIRFLOW_HOME/tests
+      cd $AIRFLOW_HOME/tests
+      aws s3 sync --exact-timestamp --delete $S3_TESTS_PATH .
+    fi
 
     execute_startup_script
     source stored_env
