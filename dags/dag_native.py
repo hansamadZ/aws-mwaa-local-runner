@@ -15,9 +15,9 @@ with DAG(
     """
         Add documentation here
     """
-    extract_data = PythonOperator(task_id="extractor",
-                                  python_callable=extract_data,
-                                  op_kwargs={ "data_string": '{"1001": 301.27, "1002": 433.21, "1003": 502.22}'})
+    extractor = PythonOperator(task_id="extractor",
+                               python_callable=extract_data,
+                               op_kwargs={"data_string": '{"1001": 301.27, "1002": 433.21, "1003": 502.22}'})
 
 
 
